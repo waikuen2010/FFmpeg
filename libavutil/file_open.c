@@ -113,9 +113,9 @@ int avpriv_tempfile(const char *prefix, char **filename, int log_offset, void *l
     FileLogContext file_log_ctx = { &file_log_ctx_class, log_offset, log_ctx };
     int fd = -1;
 #if !HAVE_MKSTEMP
-    void *ptr= tempnam(NULL, prefix);
+    void *ptr= NULL; // tempnam(NULL, prefix);
     if(!ptr)
-        ptr= tempnam(".", prefix);
+        ptr= NULL; // tempnam(".", prefix);
     *filename = av_strdup(ptr);
 #undef free
     free(ptr);
